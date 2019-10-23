@@ -12,16 +12,10 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to mongo db
 mongoose
-	.connect(db);
-	//.then(() => console.log("MongoDB connected.."))
-	//.catch(err => console.log(err));
-	
-var MyModel = mongoose.model('Test', new Schema({ name: String }));
-// Works
-MyModel.findOne((error, result) => {
-	console.log(`This is error ${error}`);
-	console.log(`This is the result ${result}`);
-});
+	.connect(db).then(
+		() => console.log("MongoDB connected.."),
+	    err => console.log(err)
+	);
 	
 const port = process.env.PORT || 5000;
 
