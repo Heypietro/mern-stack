@@ -14,16 +14,12 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to mongo db 
 
-// Database Name
-const dbName = 'test';
-
 // Use connect method to connect to the server
-MongoClient.connect(db, function(err, client) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-
-  const db = client.db(dbName);
-
+const uri = "mongodb+srv://pietro:pietro@firstmernproject-ky9he.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
   client.close();
 });
 	
