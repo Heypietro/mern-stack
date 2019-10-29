@@ -10,21 +10,19 @@ const app = express();
 app.use(bodyParser.json());
 
 // DB config
-const db = require("./config/keys").mongoURI;
+
 
 // Connect to mongo db 
-
-// Use connect method to connect to the server
-const uri = "mongodb+srv://pietro:pietro@firstmernproject-ky9he.mongodb.net/test?retryWrites=true&w=majority";
+const uri = require("./config/keys").mongoURI;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
+  console.log('sono dentro'); 
   client.close();
 });
+
 	
 const port = process.env.PORT || 5000;
 
-app.listen(port , 
-		   () => console.log(`Server started on port ${port}`)
-		  );
+app.listen(port , () => console.log(`Server started on port ${port}`));
