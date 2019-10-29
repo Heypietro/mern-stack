@@ -11,16 +11,19 @@ app.use(bodyParser.json());
 
 // DB config
 
-
 // Connect to mongo db 
 const uri = require("./config/keys").mongoURI;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
+mongoose.connect(uri, {useNewUrlParser: true})
+	.then(() => console.log("Connecting..."))
+	.catch(err => console.log(err));
+
+//const client = new MongoClient(uri, { useNewUrlParser: true });
+//client.connect(err => {
+  //const collection = client.db("test").collection("devices");
   // perform actions on the collection object
-  console.log('sono dentro'); 
-  client.close();
-});
+  //console.log('sono dentro'); 
+  //client.close();
+//});
 
 //Use Routes
 app.use("/api/items", items);
