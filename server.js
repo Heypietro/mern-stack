@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 const items = require("./routes/api/items");
 
 const app = express();
@@ -13,9 +13,21 @@ app.use(bodyParser.json());
 
 // Connect to mongo db 
 const uri = require("./config/keys").mongoURI;
-mongoose.connect(uri, {useNewUrlParser: true})
-	.then(() => console.log("Connecting..."))
-	.catch(err => console.log(err));
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+});
+const db = mongoose.connection;
+db.on("error", () => {
+    console.log("> error occurred from the database");
+});
+db.once("open", () => {
+    console.log("> successfully opened the database");
+});
+
+//mongoose.connect(uri, {useNewUrlParser: true})
+	//.then(() => console.log("Connecting..."))
+	//.catch(err => console.log(err));
 
 //const client = new MongoClient(uri, { useNewUrlParser: true });
 //client.connect(err => {
