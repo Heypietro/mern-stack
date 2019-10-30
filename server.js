@@ -14,28 +14,9 @@ app.use(bodyParser.json());
 // Connect to mongo db 
 const uri = require("./config/keys").mongoURI;
 
-mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
-mongoose.Promise = global.Promise;
-
-var Cat = mongoose.model('Cat', { name: String });
-
-var kitty = new Cat({ name: 'Zildjian' });
-kitty.save(function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('meow');
-  }
-});
-
-//mongoose.connect(uri, {
-   // useNewUrlParser: true,
-//}).then(()=> console.log("siiii"))
-//.catch(err => console.log("error" + err));
-
-//mongoose.connect(uri, {useNewUrlParser: true})
-	//.then(() => console.log("Connecting..."))
-	//.catch(err => console.log(err));
+mongoose.connect(uri, {useNewUrlParser: true})
+	.then(() => console.log("Connecting..."))
+	.catch(err => console.log(err));
 
 //const client = new MongoClient(uri, { useNewUrlParser: true });
 //client.connect(err => {
