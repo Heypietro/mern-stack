@@ -14,16 +14,24 @@ app.use(bodyParser.json());
 // Connect to mongo db 
 const uri = require("./config/keys").mongoURI;
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
+mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
+var Cat = mongoose.model('Cat', { name: String });
+
+var kitty = new Cat({ name: 'Zildjian' });
+kitty.save(function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('meow');
+  }
 });
-const db = mongoose.connection;
-db.on("error", () => {
-    console.log("> error occurred from the database");
-});
-db.once("open", () => {
-    console.log("> successfully opened the database");
-});
+
+//mongoose.connect(uri, {
+   // useNewUrlParser: true,
+//}).then(()=> console.log("siiii"))
+//.catch(err => console.log("error" + err));
 
 //mongoose.connect(uri, {useNewUrlParser: true})
 	//.then(() => console.log("Connecting..."))
