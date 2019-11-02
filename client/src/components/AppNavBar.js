@@ -6,7 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink,
+  Container} from 'reactstrap';
   
 class AppNavBar extends Component {
 	state = {
@@ -15,7 +16,7 @@ class AppNavBar extends Component {
 	
 	toggle = () => {
 		this.setState({
-			isOpen : !this.state.isOpens
+			isOpen : !this.state.isOpen
 		});
 	} 
 	
@@ -25,11 +26,11 @@ class AppNavBar extends Component {
 		<Navbar color="dark" dark expand="sm" className="mb-5" >
 		<Container>
 		<NavbarBrand href="/">ShoppingList</NavbarBrand>
-		<NavbarToggler onClick="{this.toggle} />
-		<Collapse isOpen="{this.state.isOpen}" navbar>
+		<NavbarToggler onClick={this.toggle} />
+		<Collapse isOpen={this.state.isOpen} navbar>
 			<Nav className="ml-auto" navbar>
 			<NavItem>
-			<NavLink href="www.google.it">Google</NavLink>
+			<NavLink href="https://www.google.it">Google</NavLink>
 			</NavItem>
 			</Nav>
 		</Collapse>

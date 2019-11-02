@@ -1,5 +1,5 @@
 import React from 'react';
-import AppNavBar from './component/AppNavBar';
+import AppNavBar from './components/AppNavBar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
