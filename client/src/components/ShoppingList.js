@@ -4,7 +4,7 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 import uuid from "uuid";
 
 
-class ShoppingList extent Component{
+class ShoppingList extends Component{
 	state = {
 		items : [
 		 {id : uuid(), name : "Eggs"},
@@ -14,8 +14,9 @@ class ShoppingList extent Component{
 	}
 	
 	render() {
-		return(
+		
 		const {items} = this.state;
+		return(
 		<Container>
 		<Button
 			color = "dark"
